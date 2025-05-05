@@ -1,0 +1,72 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project Rules 
+This project is my personal portfolio to showcase my projects.
+
+#Tech stack 
+- Frontend: Next.js, Tailwind, Shadcn, Framer Motion
+
+# General rules 
+- use kebabcase for naming files 
+
+### Comment Rules 
+- I'm new to web development, please write lots of comments to help me understand the code. 
+
+
+## Frontend Rules 
+
+### Design Rules
+
+- We want a clean, simple design.  
+- Use responsive design to account for all screen sizes.  
+- Use the following color palette to guide all UI design choices. The tone should feel calm, minimal, natural, and Nordic.
+
+---
+
+### 🎨 Primary Palette
+
+- `#F8F8F8` – **Soft Paper White** (Background)  
+- `#E1E1E1` – **Fog Gray** (Borders, surfaces)  
+- `#2E2E2E` – **Gentle Near-Black** (Primary text)  
+- `#607D8B` – **Muted Slate Blue** (Primary accent)  
+- `#A1887F` – **Warm Taupe** (Neutral buttons, backgrounds)  
+- `#90A4AE` – **Cool Mist Blue** (Secondary UI)  
+- `#C8E6C9` – **Pale Muted Green** (Positive/Success)
+
+---
+
+### 🖱️ Hover States
+
+- **Buttons**
+  - Primary: `#607D8B` → hover: `#546E7A`  
+  - Secondary: `#A1887F` → hover: `#8D756A`  
+
+- **Text Links**  
+  - `#2E2E2E` → hover: `#1C1C1C` and add underline  
+
+- **Cards / Containers**  
+  - Background: `#F8F8F8` → hover: `#F0F0F0`  
+  - Add soft shadow on hover: `shadow-md`, `transition-shadow`, `duration-200`  
+
+- **Inputs**  
+  - Border: `#E1E1E1` → hover/focus: `#A1887F`  
+
+---
+
+### ⚠️ Usage Guidelines
+
+- Avoid bright, saturated colors.  
+- No pure black (`#000`) or pure white (`#FFF`).  
+- Use soft shadows and subtle hover effects.  
+- Emphasize whitespace and clarity over color-blocking.  
+- Match accent colors with natural, harmonious tones.  
+- Use `transition` and `duration-200` for smooth interactive feedback.
+
+###Component Rules 
+
+#### Client Component Rules
+
+- Export client components as 'export const MyComponent' 
