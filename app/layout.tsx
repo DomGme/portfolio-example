@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Literata, Public_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "../components/header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Import Literata for headlines and accents
+const literata = Literata({
   subsets: ["latin"],
+  variable: "--font-literata",
+  display: "swap",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Import Public Sans for body text
+const publicSans = Public_Sans({
   subsets: ["latin"],
+  variable: "--font-public-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,10 +27,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`${literata.variable} ${publicSans.variable} antialiased`}>
+      {/*
+        Apply Public Sans as the default font for body text,
+        and Literata for headlines using Tailwind's font-sans and font-serif classes.
+        You can further customize this in globals.css or Tailwind config if needed.
+      */}
+      <body className="font-sans">
         <Header />
         {children}
       </body>
