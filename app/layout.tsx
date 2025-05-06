@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Literata, Public_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "../components/header";
+import { Footer } from "../components/footer";
 
 // Import Literata for headlines and accents
 const literata = Literata({
@@ -36,6 +37,8 @@ export default function RootLayout({
       <body className="font-sans">
         <Header />
         {children}
+        {/* Brutalist, minimal footer at the bottom of every page */}
+        <Footer />
       </body>
     </html>
   );

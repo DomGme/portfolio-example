@@ -1,66 +1,76 @@
 "use client";
 // Header component for the portfolio site
-// This will be used at the top of every page
-// It uses the project's color palette and is responsive
-// On mobile, it shows a hamburger menu for navigation
+// Desktop: brutalist nav grid. Mobile: MENU/CART, fullscreen overlay menu.
 
 import Link from "next/link";
 import { useState } from "react";
 
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/writing", label: "Writing" },
+  { href: "/projects", label: "Projects" },
+];
+
 export const Header = () => {
-  // State to control mobile menu open/close
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Function to toggle the mobile menu
-  const toggleMenu = () => setMenuOpen((open) => !open);
-
   return (
-    <header className="w-full bg-[#F8F8F8] border-b border-[#E1E1E1] shadow-sm">
-      <nav className="max-w-4xl mx-auto flex items-center justify-between p-4">
-        {/* Site title or logo */}
-        <Link href="/" className="text-2xl font-bold text-[#2E2E2E] hover:text-[#1C1C1C] transition-colors duration-200">
-          Dominik's Portfolio
-        </Link>
-        {/* Desktop navigation links */}
-        <div className="hidden md:flex gap-4">
-          <Link href="/" className="text-[#607D8B] hover:text-[#546E7A] transition-colors duration-200">
-            Home
+    <header className="w-full border-b-2 border-[#E1E1E1] bg-white z-50 relative">
+      {/* Desktop nav grid */}
+      <nav className="hidden md:grid w-full grid-cols-3">
+        {navLinks.map((link, idx) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={
+              `text-[#2E2E2E] text-lg font-bold uppercase tracking-wide text-center py-6 ` +
+              `border-r-2 border-[#E1E1E1] last:border-r-0 flex items-center justify-center hover:bg-[#F8F8F8] transition-colors duration-200`
+            }
+            style={{ letterSpacing: "0.05em" }}
+          >
+            {link.label}
           </Link>
-          <Link href="/projects" className="text-[#607D8B] hover:text-[#546E7A] transition-colors duration-200">
-            Projects
-          </Link>
-        </div>
-        {/* Hamburger button for mobile */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded focus:outline-none focus:ring-2 focus:ring-[#A1887F]"
-          aria-label="Toggle menu"
-          onClick={toggleMenu}
-        >
-          {/* Hamburger icon: 3 bars */}
-          <span className={`block w-6 h-0.5 bg-[#607D8B] mb-1 transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-          <span className={`block w-6 h-0.5 bg-[#607D8B] mb-1 transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`block w-6 h-0.5 bg-[#607D8B] transition-all duration-200 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-        </button>
+        ))}
       </nav>
-      {/* Mobile menu dropdown */}
-      <div
-        className={`md:hidden transition-all duration-200 bg-[#F8F8F8] border-t border-[#E1E1E1] shadow ${menuOpen ? 'max-h-40 py-2' : 'max-h-0 overflow-hidden py-0'} flex flex-col items-center gap-2`}
-      >
-        <Link
-          href="/"
-          className="block w-full text-center text-[#607D8B] hover:text-[#546E7A] py-2 transition-colors duration-200"
-          onClick={() => setMenuOpen(false)}
+      {/* Mobile: MENU | CART */}
+      <nav className="md:hidden w-full grid grid-cols-2 border-b-2 border-[#E1E1E1]">
+        <button
+          className="text-[#2E2E2E] text-2xl font-bold uppercase tracking-wide text-center py-6 border-r-2 border-[#E1E1E1] flex items-center justify-center"
+          style={{ letterSpacing: "0.05em" }}
+          onClick={() => setMenuOpen(true)}
         >
-          Home
-        </Link>
-        <Link
-          href="/projects"
-          className="block w-full text-center text-[#607D8B] hover:text-[#546E7A] py-2 transition-colors duration-200"
-          onClick={() => setMenuOpen(false)}
-        >
-          Projects
-        </Link>
-      </div>
+          Menu
+        </button>
+        {/* No cart on mobile, so leave blank or add a placeholder if needed */}
+        <div></div>
+      </nav>
+      {/* Mobile fullscreen overlay menu */}
+      {menuOpen && (
+        <div className="fixed inset-0 bg-white z-50 flex flex-col">
+          <div className="flex justify-end border-b-2 border-[#E1E1E1]">
+            <button
+              className="text-[#2E2E2E] text-2xl font-bold uppercase tracking-wide px-6 py-6"
+              style={{ letterSpacing: "0.05em" }}
+              onClick={() => setMenuOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+          <div className="flex-1 flex flex-col">
+            {navLinks.map((link, idx) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-[#2E2E2E] text-2xl font-bold uppercase tracking-wide text-left px-6 py-8 border-b-2 border-[#111] flex items-center hover:bg-[#F8F8F8] transition-colors duration-200"
+                style={{ letterSpacing: "0.05em" }}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </header>
   );
 }; 

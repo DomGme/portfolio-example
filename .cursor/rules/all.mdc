@@ -42,34 +42,11 @@ This project is my personal portfolio to showcase my projects.
 - Please use "Literata" google font for headlines, accents.  
 - please use "Public sans" google font 
 
-### 🖱️ Hover States
-
-- **Buttons**
-  - Primary: `#607D8B` → hover: `#546E7A`  
-  - Secondary: `#A1887F` → hover: `#8D756A`  
-
-- **Text Links**  
-  - `#2E2E2E` → hover: `#1C1C1C` and add underline  
-
-- **Cards / Containers**  
-  - Background: `#F8F8F8` → hover: `#F0F0F0`  
-  - Add soft shadow on hover: `shadow-md`, `transition-shadow`, `duration-200`  
-
-- **Inputs**  
-  - Border: `#E1E1E1` → hover/focus: `#A1887F`  
-
 ---
 
-### ⚠️ Usage Guidelines
-
-- Avoid bright, saturated colors.  
-- No pure black (`#000`) or pure white (`#FFF`).  
-- Use soft shadows and subtle hover effects.  
-- Emphasize whitespace and clarity over color-blocking.  
-- Match accent colors with natural, harmonious tones.  
-- Use `transition` and `duration-200` for smooth interactive feedback.
-
 ###Component Rules 
+
+- the command for shadcn components look like this 'npx shadcn@latest add card' 
 
 #### Client Component Rules
 
