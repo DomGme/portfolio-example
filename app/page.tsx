@@ -25,3 +25,5 @@ export default function Home() {
 // it will display a welcome message and a button to navigate to the about page
 // the about page will display information about the app and the developer
 // the about page will be linked to the main page
+
+
