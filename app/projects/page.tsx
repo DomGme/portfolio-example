@@ -71,7 +71,7 @@ export default function ProjectsPage() {
           My Projects
         </h1>
         <p className="text-[#607D8B] text-lg text-center max-w-2xl mx-auto mb-4">
-          Here are some of the projects I've worked on. Each project represents different skills and technologies I've learned along my journey.
+          Here are some of the projects I&apos;ve worked on. Each project represents different skills and technologies I&apos;ve learned along my journey.
         </p>
         {/* Toggle button */}
         <div className="flex justify-center gap-2 mt-4">
