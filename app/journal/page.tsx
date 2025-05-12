@@ -4,6 +4,15 @@
 
 import Parser from 'rss-parser';
 
+// Define a type for RSS items for better type safety
+interface RSSItem {
+  title?: string;
+  link?: string;
+  content?: string;
+  'content:encoded'?: string;
+  enclosure?: { url: string };
+}
+
 // Helper function to extract the first two sentences from a string
 function getFirstTwoSentences(text: string): string {
   // This regex splits the text into sentences by looking for punctuation followed by a space or end of string
@@ -14,7 +23,7 @@ function getFirstTwoSentences(text: string): string {
 }
 
 // Helper to extract an image from the RSS item (if available)
-function getImageFromItem(item: any) {
+function getImageFromItem(item: RSSItem) {
   if (item.enclosure?.url) return item.enclosure.url;
   const match = item['content:encoded']?.match(/<img[^>]+src=\"([^\"]+)\"/);
   if (match) return match[1];
@@ -47,7 +56,10 @@ export default async function Journal() {
   return (
     <main className="w-full min-h-screen p-0 m-0">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-0 w-full">
-        {feed.items.slice(0, 12).map((item: any, idx: number) => {
+        {feed.items.slice(0, 12).map((item: RSSItem, idx: number) => {
+          // Fallbacks for missing title or link (shouldn't happen, but safe for type)
+          const title = item.title || 'Untitled';
+          const link = item.link || '#';
           // Try to get an image from the article, fallback to a color
           const image = getImageFromItem(item);
           // Extract the article content (prefer content:encoded, fallback to content)
@@ -57,8 +69,8 @@ export default async function Journal() {
           const color = PLACEHOLDER_COLORS[idx % PLACEHOLDER_COLORS.length];
           return (
             <a
-              key={item.link}
-              href={item.link}
+              key={link}
+              href={link}
               target="_blank"
               rel="noopener noreferrer"
               className="relative group flex flex-col justify-between border border-[#E1E1E1] aspect-square min-h-[250px] w-full overflow-hidden"
@@ -79,7 +91,7 @@ export default async function Journal() {
                       textShadow: image ? '0 2px 8px rgba(0,0,0,0.1)' : 'none',
                     }}
                   >
-                    {item.title}
+                    {title}
                   </span>
                 </div>
                 {/* Excerpt/description: only visible on hover, bottom justified */}
@@ -90,7 +102,7 @@ export default async function Journal() {
                 )}
               </div>
               {/* For accessibility, keep the title visible off-hover for screen readers */}
-              <span className="sr-only">{item.title}</span>
+              <span className="sr-only">{title}</span>
             </a>
           );
         })}

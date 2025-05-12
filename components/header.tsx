@@ -19,7 +19,7 @@ export const Header = () => {
     <header className="w-full border-b-2 border-[#E1E1E1] bg-white z-50 relative">
       {/* Desktop nav grid: now 4 columns for 4 items */}
       <nav className="hidden md:grid w-full grid-cols-4">
-        {navLinks.map((link, idx) => (
+        {navLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
@@ -58,7 +58,7 @@ export const Header = () => {
             </button>
           </div>
           <div className="flex-1 flex flex-col">
-            {navLinks.map((link, idx) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

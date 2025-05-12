@@ -7,7 +7,6 @@
 import React, { useState } from "react";
 import {
   Card,
-  CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
@@ -49,11 +48,6 @@ export default function ProjectsPage() {
   // Hide image if it fails to load
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.style.display = "none";
-  };
-
-  // Toggle handler for accordion
-  const handleAccordionToggle = (idx: number) => {
-    setOpenIdx(openIdx === idx ? null : idx);
   };
 
   // Framer Motion variants for card animation

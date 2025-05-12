@@ -1,6 +1,15 @@
 import Parser from 'rss-parser';
 
-function getImageFromItem(item: any) {
+// Define a type for RSS items for better type safety
+interface RSSItem {
+  title?: string;
+  link?: string;
+  content?: string;
+  'content:encoded'?: string;
+  enclosure?: { url: string };
+}
+
+function getImageFromItem(item: RSSItem) {
   if (item.enclosure?.url) return item.enclosure.url;
   const match = item['content:encoded']?.match(/<img[^>]+src=\"([^\"]+)\"/);
   if (match) return match[1];
@@ -34,7 +43,10 @@ export default async function Writing() {
     <main className="max-w-5xl mx-auto p-4">
       <h1 className="text-4xl font-bold mb-8 text-[#2E2E2E]">Writing</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {feed.items.slice(0, 8).map((item: any, idx: number) => {
+        {feed.items.slice(0, 8).map((item: RSSItem, idx: number) => {
+          // Fallbacks for missing title or link (shouldn't happen, but safe for type)
+          const title = item.title || 'Untitled';
+          const link = item.link || '#';
           const image = getImageFromItem(item);
           // Extract the article content (prefer content:encoded, fallback to content)
           const content = item['content:encoded'] || item.content || '';
@@ -42,8 +54,8 @@ export default async function Writing() {
           const excerpt = getFirstTwoSentences(content.replace(/<[^>]+>/g, ''));
           return (
             <a
-              key={item.link}
-              href={item.link}
+              key={link}
+              href={link}
               target="_blank"
               rel="noopener noreferrer"
               className="relative aspect-square group border-2 border-[#E1E1E1] overflow-hidden flex items-center justify-center"
@@ -61,7 +73,7 @@ export default async function Writing() {
                   letterSpacing: '0.05em',
                 }}
               >
-                {item.title}
+                {title}
               </span>
               {/* Overlay for excerpt, only visible on hover */}
               <div
