@@ -42,8 +42,6 @@ const projects = [
 export default function ProjectsPage() {
   // State for toggling between card and list view
   const [view, setView] = useState<'card' | 'list'>('card');
-  // State for which accordion item is open
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   // Hide image if it fails to load
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {

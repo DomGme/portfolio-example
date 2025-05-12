@@ -36,7 +36,7 @@ export default async function Journal() {
   try {
     const parser = new Parser();
     feed = await parser.parseURL('https://dominiksnotebook.substack.com/feed');
-  } catch (e) {
+  } catch {
     return (
       <main className="w-full min-h-screen p-0 m-0 flex items-center justify-center">
         <p className="text-[#607D8B] text-xl">Could not load journal articles. Please try again later.</p>
