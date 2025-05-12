@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/writing", label: "Writing" },
   { href: "/projects", label: "Projects" },
+  { href: "/journal", label: "Journal" },
 ];
 
 export const Header = () => {
@@ -16,8 +17,8 @@ export const Header = () => {
 
   return (
     <header className="w-full border-b-2 border-[#E1E1E1] bg-white z-50 relative">
-      {/* Desktop nav grid */}
-      <nav className="hidden md:grid w-full grid-cols-3">
+      {/* Desktop nav grid: now 4 columns for 4 items */}
+      <nav className="hidden md:grid w-full grid-cols-4">
         {navLinks.map((link, idx) => (
           <Link
             key={link.href}
